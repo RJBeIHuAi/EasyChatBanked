@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.web.csrf.CsrfToken
-import org.springframework.security.web.csrf.CsrfTokenRepository
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -45,7 +44,7 @@ class UserController(
     }
 
     @GetMapping("/csrf")
-    fun getCsrfToken(request: HttpServletRequest): CsrfToken? {
-        return userService.getCsrfToken(request)
+    fun getCsrfToken(request: HttpServletRequest): String ? {
+        return (request.getAttribute("_csrf") as CsrfToken).token;
     }
 }
