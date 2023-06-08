@@ -30,6 +30,7 @@ class SecurityConfig {
             .authorizeHttpRequests { authorize: AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry ->
                 authorize
                     .requestMatchers("/users/**").permitAll()
+                    .requestMatchers("/friends/**").permitAll()
                     .anyRequest().permitAll()
             }
             .csrf { csrfTokenRepository()}

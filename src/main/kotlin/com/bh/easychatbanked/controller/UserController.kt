@@ -2,6 +2,7 @@ package com.bh.easychatbanked.controller
 
 import com.bh.easychatbanked.eneity.User
 import com.bh.easychatbanked.request.RegistrationRequest
+import com.bh.easychatbanked.request.UserUpdateRequest
 import com.bh.easychatbanked.service.UserService
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Autowired
@@ -38,13 +39,32 @@ class UserController(
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.")
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     fun getUserById(@PathVariable id: Long?): User? {
         return userService.getUserById(id)
+    }
+
+    @DeleteMapping("/del/{id}")
+    fun deleteUser(@PathVariable id: Long): ResponseEntity<String> {
+        userService.deleteUserById(id)
+        return ResponseEntity.status(HttpStatus.CREATED).body("User deleted successfully.")
+    }
+    @PatchMapping("/update/{id}")
+    fun updateUser(
+        @PathVariable id: Long,
+        @RequestBody updatedUser: UserUpdateRequest
+    ): ResponseEntity<String> {
+        val success = userService.updateUser(id, updatedUser)
+        return if (success) {
+            ResponseEntity.ok("User updated successfully.")
+        } else {
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.")
+        }
     }
 
     @GetMapping("/csrf")
     fun getCsrfToken(request: HttpServletRequest): String ? {
         return (request.getAttribute("_csrf") as CsrfToken).token;
     }
+
 }

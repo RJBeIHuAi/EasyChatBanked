@@ -1,5 +1,6 @@
 package com.bh.easychatbanked.eneity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -13,25 +14,28 @@ data class User(
     @Column(unique = true)
     val account: String,
 
-    val username: String,
+    var username: String,
 
-    val password: String,
+    var password: String,
 
-    val email: String,
+    var email: String,
 
-    val phone: String,
+    var phone: String,
 
     val avatar: String = "default-avatar.jpg",
 
-    val createTime: LocalDateTime = LocalDateTime.now()
+    val createTime: LocalDateTime = LocalDateTime.now(),
+
+    @ManyToMany
+    @JoinTable(
+    name = "user_friends",
+    joinColumns = [JoinColumn(name = "user_id")],
+    inverseJoinColumns = [JoinColumn(name = "friend_id")]
+    )
+    @JsonIgnore
+    val friends: MutableList<User> = mutableListOf()
+
 )
-
-sealed class RegistrationResult<out T> {
-    data class Success<out T>(val message: String) : RegistrationResult<T>()
-    data class DuplicateAccount<out T>(val code: Int, val message: String) : RegistrationResult<T>()
-    data class Failure<out T>(val code: Int, val message: String) : RegistrationResult<T>()
-}
-
 
 
 
