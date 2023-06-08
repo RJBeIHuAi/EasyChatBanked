@@ -64,7 +64,7 @@ class UserController(
 
     @GetMapping("/csrf")
     fun getCsrfToken(request: HttpServletRequest): String ? {
-        return (request.getAttribute("_csrf") as CsrfToken).token;
+        return (request.getAttribute("_csrf") as CsrfToken).token
     }
 
 }

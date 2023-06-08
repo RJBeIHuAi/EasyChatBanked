@@ -2,7 +2,6 @@ package com.bh.easychatbanked.eneity
 
 import com.bh.easychatbanked.enum.FriendRequestStatus
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 
 

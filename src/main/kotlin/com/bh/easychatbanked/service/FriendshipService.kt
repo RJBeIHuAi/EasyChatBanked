@@ -5,10 +5,7 @@ import com.bh.easychatbanked.eneity.User
 import com.bh.easychatbanked.enum.FriendRequestStatus
 import com.bh.easychatbanked.repository.FriendRequestRepository
 import com.bh.easychatbanked.repository.UserRepository
-import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.web.csrf.CsrfToken
-import org.springframework.security.web.csrf.CsrfTokenRepository
 import org.springframework.stereotype.Service
 
 @Service

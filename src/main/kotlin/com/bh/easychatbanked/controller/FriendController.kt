@@ -1,6 +1,5 @@
 package com.bh.easychatbanked.controller
 
-import com.bh.easychatbanked.eneity.FriendRequest
 import com.bh.easychatbanked.eneity.User
 import com.bh.easychatbanked.repository.UserRepository
 import com.bh.easychatbanked.service.FriendshipService
@@ -68,6 +67,6 @@ class FriendController (
 
     @GetMapping("/csrf")
     fun getCsrfToken(request: HttpServletRequest): String ? {
-        return (request.getAttribute("_csrf") as CsrfToken).token;
+        return (request.getAttribute("_csrf") as CsrfToken).token
     }
 }

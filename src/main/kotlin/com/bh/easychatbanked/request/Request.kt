@@ -1,7 +1,6 @@
 package com.bh.easychatbanked.request
 
-import com.bh.easychatbanked.eneity.FriendRequest
-import com.bh.easychatbanked.eneity.User
+
 
 data class RegistrationRequest(
     val account: String,
