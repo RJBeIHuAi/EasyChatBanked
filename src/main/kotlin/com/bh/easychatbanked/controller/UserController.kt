@@ -3,7 +3,6 @@ package com.bh.easychatbanked.controller
 import com.bh.easychatbanked.request.RegistrationRequest
 import com.bh.easychatbanked.request.UserUpdateRequest
 import com.bh.easychatbanked.service.UserService
-import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -77,8 +76,8 @@ class UserController(
     }
 
     @GetMapping("/csrf")
-    fun getCsrfToken(request: HttpServletRequest): String ? {
-        return (request.getAttribute("_csrf") as CsrfToken).token
+    fun csrf(csrfToken: CsrfToken): CsrfToken {
+        return csrfToken
     }
 
 }
